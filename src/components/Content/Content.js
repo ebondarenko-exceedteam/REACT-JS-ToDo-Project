@@ -1,13 +1,16 @@
 import React from "react";
 import editLogo from '../../img/edit.svg';
-import closeLogo from '../../img/done.svg';
+import closeLogo from '../../img/close.svg';
+import './Content.scss';
 
 const Content = (props) => {
+  const {item, index} = props;
+
   return (
-    <div key className='task_container'>
+    <div key={`task-${index}`} className='task_container'>
       <div className='task_value'>
-        <input type='checkbox' className='task_value_checkbox' />
-        <p className='task_value_text'></p>
+        <input type='checkbox' className='task_value_checkbox' checked={item.isCheck}/>
+        <p className='task_value_text'>{item.text}</p>
       </div>
       <div className='task_button'>
         <img src={editLogo} />

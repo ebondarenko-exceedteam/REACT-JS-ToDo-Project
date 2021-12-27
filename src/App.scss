@@ -1,13 +1,6 @@
-img {
-  width: 20px;
-}
-
-img + img {
-  margin-left: 5px;
-}
-
-img:hover {
-  cursor: pointer;
+* {
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
@@ -20,20 +13,58 @@ h1 {
   align-items: center;
 }
 
+.main_navigation {
+  width: 70%;
+}
+
+img {
+  width: 20px;
+}
+
+img + img {
+  margin-left: 5px;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+.input_block {
+  width: 100%;
+}
+
+.input_block button{
+  width: 20%;
+  margin-left: 5px;
+}
+
+#add_task {
+  width: 79%;
+}
+
 .task_container {
   display: flex;
   align-items: center;
   margin-top: 15px;
   box-shadow: 2px 2px 5px black;
+  width: 70%;
+  height: 50px;
 }
 
 .task_value {
   display: flex;
   align-items: center;
   width: 80%;
+  margin-left: 5px;
 
   .task_value_text {
     margin-left: 5px;
+  }
+
+  .task_value_text_done {
+    margin-left: 5px;
+    color: rgb(103, 204, 2);
+    text-decoration: line-through;
   }
 }
 
@@ -41,4 +72,9 @@ h1 {
   display: flex;
   width: 20%;
   justify-content: flex-end;
+  margin-right: 5px;
+}
+
+.task_input_edit {
+  width: 100%;
 }
