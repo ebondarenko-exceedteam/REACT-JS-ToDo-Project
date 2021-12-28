@@ -7,18 +7,24 @@ import './App.scss';
 function App() {
   const [ editFlag, setEditFlag ] = useState('');
   const [ currentValue, setCurrentValue ] = useState('');
+  const [ allTasks, setTask ] = useState([]);
 
   return (
     <div>
       <Switch>
         <Route path='/home'>
           <Home
+            allTasks={allTasks}
+            setTask={setTask}
             setEditFlag={setEditFlag}
             setCurrentValue={setCurrentValue}
             />
         </Route>
-        <Route path='/edit'>
+        <Route path='/edit:_id'>
           <Edit
+            allTasks={allTasks}
+            setTask={setTask}
+            editFlag={editFlag}
             setEditFlag={setEditFlag}
             currentValue={currentValue}
           />

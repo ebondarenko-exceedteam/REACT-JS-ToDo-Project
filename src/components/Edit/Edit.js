@@ -5,7 +5,7 @@ import doneLogo from '../../img/done.svg';
 import backLogo from '../../img/back.svg';
 import './Edit.scss';
 
-const Edit = ({ currentValue, setEditFlag}) => {
+const Edit = ({ allTasks, setTask, editFlag, currentValue, setEditFlag}) => {
   const [ valueEditInput, setValueEditInput ] = useState(currentValue);
 
   const onChangeEditInput = (e) => {
@@ -13,10 +13,10 @@ const Edit = ({ currentValue, setEditFlag}) => {
   }
 
   const onChangeTask = async () => {
-    // await axios.patch('http://localhost:5000/updateTask', {
-    //   _id,
-    //   text: valueEditInput
-    // }).then(res => setTask(res.data.data))
+    await axios.patch('http://localhost:5000/updateTask', {
+      _id: allTasks[editFlag]._id,
+      text: valueEditInput
+    }).then(res => setTask(res.data.data))
   }
 
   const closeTask = () => {

@@ -15,16 +15,7 @@ img:hover {
   align-items: center;
   margin-top: 15px;
   box-shadow: 2px 2px 5px black;
-}
-
-.task_value {
-  display: flex;
-  align-items: center;
-  width: 80%;
-
-  .task_value_text {
-    margin-left: 5px;
-  }
+  margin: 20px auto;
 }
 
 .task_button {

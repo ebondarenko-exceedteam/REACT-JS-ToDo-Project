@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from 'axios';
 import editLogo from '../../img/edit.svg';
 import closeLogo from '../../img/close.svg';
 import './Home.scss';
 
-const Home = ({setEditFlag, setCurrentValue}) => {
-  const [ allTasks, setTask ] = useState([]);
+const Home = ({ allTasks, setTask, setEditFlag, setCurrentValue}) => {
   const [ valueInput, setValueInput ] = useState('');
+  let history = useHistory();
 
   useEffect(async () => {
     await axios.get('http://localhost:5000/allTasks')
@@ -47,6 +47,7 @@ const Home = ({setEditFlag, setCurrentValue}) => {
   const editClick = (index, text) => {
     setEditFlag(index);
     setCurrentValue(text);
+    history.push(`/edit:${allTasks[index]._id}`)
   }
 
   return (
@@ -69,11 +70,11 @@ const Home = ({setEditFlag, setCurrentValue}) => {
           <p className={item.isCheck ? 'task_value_text_done' : 'task_value_text'}>{item.text}</p>
         </div>
         <div className='task_button'>
-          {!item.isCheck && <Link to='/edit'><img
+          {!item.isCheck && <img
             onClick={() => {editClick(index, item.text)}}
             src={editLogo}
             alt='editLogo'
-            /></Link>}
+            />}
           <img
             onClick={() => onDeleteTask(index)}
             src={closeLogo}
