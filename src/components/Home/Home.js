@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import editLogo from '../../img/edit.svg';
 import closeLogo from '../../img/close.svg';
@@ -7,7 +7,7 @@ import './Home.scss';
 
 const Home = ({ allTasks, setTask, setEditFlag, setCurrentValue}) => {
   const [ valueInput, setValueInput ] = useState('');
-  let history = useHistory();
+  const history = useHistory();
 
   useEffect(async () => {
     await axios.get('http://localhost:5000/allTasks')
@@ -26,9 +26,7 @@ const Home = ({ allTasks, setTask, setEditFlag, setCurrentValue}) => {
     setValueInput(e.target.value);
   }
 
-  allTasks.sort((a, b) =>
-		b.isCheck > a.isCheck ? -1 : b.isCheck < a.isCheck ? 1 : 0
-	);
+  allTasks.sort((a, b) => b.isCheck > a.isCheck ? -1 : b.isCheck < a.isCheck ? 1 : 0);
 
   const onChangeCheckbox = async (index) => {
     const { _id, isCheck } = allTasks[index];
@@ -47,7 +45,7 @@ const Home = ({ allTasks, setTask, setEditFlag, setCurrentValue}) => {
   const editClick = (index, text) => {
     setEditFlag(index);
     setCurrentValue(text);
-    history.push(`/edit:${allTasks[index]._id}`)
+    history.push(`/edit/:${allTasks[index]._id}`);
   }
 
   return (
