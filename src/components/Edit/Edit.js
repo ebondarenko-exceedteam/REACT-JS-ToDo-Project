@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import doneLogo from '../../img/done.svg';
 import backLogo from '../../img/back.svg';
@@ -7,6 +7,7 @@ import './Edit.scss';
 
 const Edit = ({ allTasks, setTask, editFlag, currentValue, setEditFlag}) => {
   const [ valueEditInput, setValueEditInput ] = useState(currentValue);
+  const history = useHistory();
 
   const onChangeEditInput = (e) => {
     setValueEditInput(e.target.value);
@@ -16,11 +17,13 @@ const Edit = ({ allTasks, setTask, editFlag, currentValue, setEditFlag}) => {
     await axios.patch('http://localhost:5000/updateTask', {
       _id: allTasks[editFlag]._id,
       text: valueEditInput
-    }).then(res => setTask(res.data.data))
+    }).then(res => setTask(res.data.data));
+    history.push('/home');
   }
 
   const closeTask = () => {
     setEditFlag('');
+    history.push('/home');
   }
 
   return (
@@ -34,16 +37,16 @@ const Edit = ({ allTasks, setTask, editFlag, currentValue, setEditFlag}) => {
         />
       </div>
       <div className='task_button'>
-        <Link to='/home'><img
+        <img
           onClick={() => onChangeTask()}
           src={doneLogo}
           alt='doneLogo'
-        /></Link>
-        <Link to='/home'><img
+        />
+        <img
           onClick={() => closeTask()}
           src={backLogo}
           alt='backLogo'
-        /></Link>
+        />
       </div>
     </div>
   )
