@@ -5,9 +5,9 @@ import Edit from './components/Edit/Edit';
 import './App.scss';
 
 const App = () => {
-  const [ editFlag, setEditFlag ] = useState('');
-  const [ currentValue, setCurrentValue ] = useState('');
-  const [ allTasks, setTask ] = useState([]);
+  const [editFlag, setEditFlag] = useState('');
+  const [currentValue, setCurrentValue] = useState('');
+  const [allTasks, setTask] = useState([]);
 
   return (
     <div>
@@ -18,7 +18,7 @@ const App = () => {
             setTask={setTask}
             setEditFlag={setEditFlag}
             setCurrentValue={setCurrentValue}
-            />
+          />
         </Route>
         <Route path='/edit/:_id'>
           <Edit
@@ -30,7 +30,7 @@ const App = () => {
           />
         </Route>
         <Redirect from='/' to='/home' />
-      </Switch>  
+      </Switch>
     </div>
   );
 }
